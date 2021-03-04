@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace External_training
 {
-    class Program
+    class Rectangle
     {
-        delegate float FunctionOnSegment(float func);
-
-        static void Main(string[] args)
-        {
-            Console.ReadKey();
-        }
     }
 }
