@@ -12,6 +12,8 @@ namespace External_training
 
         static void Main(string[] args)
         {
+            Rectangle rectangle = new Rectangle();
+            rectangle.MinimalRectangle(1, 3, 5, 4, 4, 1, 4, 1);
             Console.ReadKey();
         }
     }
