@@ -7,11 +7,8 @@ namespace External_training
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                PrintMenu();
+            bool newSwitch = true;
 
-            }
             uint n = 9, m = 4;
             double s = 0;
 
@@ -19,46 +16,68 @@ namespace External_training
             VariableInitialization(ref n);
             Console.WriteLine("Для двумерного массива N x M, где N=" + n + ", введите M");
             VariableInitialization(ref m);
-            //На случай если надо будет сравнивать не с 0 а с другим числом - задаётся переменной S
-            //Console.WriteLine("Для одномерного массива, введите число S, после которого будет считаться сумма элементов");
-            //VariableInitialization(ref s);
 
-            //Задание не корреткно, т.к. нельзя проверить вещественное число на чётно/нечётность
-            //Если вместо double использовать int программа работает корректно
             double[] ex1 = new double[n];
             double[,] ex2 = new double[n, m];
 
-            //Заполнение массива случайными числами
-            ArrayInitialization(ref ex1, s);
+            ArrayInitialization(ref ex1, ref s);
             ArrayInitialization(ref ex2);
 
-            //Вывод результатов
             Console.WriteLine("\nВывод массива ex1:");
             PrintToConsoleArray(ref ex1);
             Console.WriteLine("\nВывод массива ex2:");
             PrintToConsoleArray(ref ex2);
 
-            //Задание 1 - сумма модулей массива после элемента S
-            bool beginCounting = false;
-            double sumOfElements = 0;
-            for (int i = 0; i < ex1.Length; i++)
+            while (newSwitch)
             {
-                if (ex1[i] == s)
+                uint userSelection = 0;
+
+                PrintMenu();
+                VariableInitialization(ref userSelection);
+
+                switch (userSelection)
                 {
-                    beginCounting = true;
-                    continue;
+                    case 1:
+                        Console.WriteLine("Для передачи по значению --ссылке-- возспользуемся методом находящий сумму модулей массива\nВыполняется...");
+                        Console.WriteLine("...Готово!\nСумма элементов массива до элемента S=" + s + " равна: " + SumOfElementArrayRef(ref ex1, ref s));
+                        break;
+
+                    case 2:
+                        Console.WriteLine("Для передачи по ссылке возспользуемся методом, сортирующий массив до последнего чётного элемента\nВыполняется..\n");
+                        SortArrayWithRef(ref ex1);
+                        Console.WriteLine("...Готово!\nОтсортированный массив по убыванию до последнего четного элемента: ");
+                        PrintToConsoleArray(ref ex1);
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Для передачи по ссылке --того, что возвользоваться выходынми параметрами  параметром-массивом-- возспользуемся методом " +
+                                                   "сортирующий массив до последнего чётного элемента\nВыполняется..\n");
+                        int? latLineWithOddNumber = null;
+                        for (int i = 0; i < ex2.GetLength(0); i++)
+                        {
+                            for (int j = 0; j < ex2.GetLength(1); j++)
+                            {
+                                if (ex2[i, j] % 2 == 0)
+                                    latLineWithOddNumber = i;
+                            }
+                        }
+                        Console.WriteLine("Номер последней строки где встречается нечетное число: " + latLineWithOddNumber);
+
+                        break;
+                    case 4:
+                        Console.WriteLine("4");
+                        break;
+                    case 5:
+                        newSwitch = false;
+                        break;
+                    default:
+                        Console.WriteLine("def");
+                        break;
                 }
-                if (beginCounting)
-                {
-                    sumOfElements += Math.Abs(ex1[i]);
-                }
+
             }
-            Console.WriteLine("Сумма элементов массива по элемента S=" + s + " равна: " + sumOfElements);
 
             //Задание 2 - отсортировать по убыванию до последнего чётного элемента
-            ex1 = ex1.TakeWhile(x => x % 2 == 0).OrderByDescending(x => x).ToArray();
-            Console.WriteLine("Отсортированный массив по убыванию до последнего четного элемента: ");
-            PrintToConsoleArray(ref ex1);
 
             //Задание 3 - номер последней строки с хотя бы 1 не чётным числом
             int? latLineWithOddNumber = null;
@@ -74,17 +93,51 @@ namespace External_training
             Console.ReadKey();
         }
 
+        
         private static void PrintMenu()
         {
             Console.WriteLine("Меню:");
-            Console.Write("1 - передать данные по значению" + "\n" + 
+            Console.Write("1 - передать данные по значению" + "\n" +
                 "2 - передать данные по ссылке" + "\n" +
-                "3 - использовать выходные параметры" + "\n" + 
-                "4 - использовать параметры массивы" + "\n" + 
-                "5 - выйти из программы" + "\n" + 
+                "3 - использовать выходные параметры" + "\n" +
+                "4 - использовать параметры массивы" + "\n" +
+                "5 - выйти из программы" + "\n" +
                 "Ваш выбор: ");
         }
 
+        private static void SortArrayWithRef(ref double[] arr)
+        {
+            arr = arr.TakeWhile(x => x % 2 == 0).OrderByDescending(x => x).ToArray();
+        }
+        private static double SumOfElementArrayRef(ref double[] ex1, ref double s)
+        {
+            bool beginCounting = false;
+            double sumOfElements = 0;
+            for (int i = 0; i < ex1.Length; i++)
+            {
+                if (ex1[i] == s)
+                {
+                    beginCounting = true;
+                    continue;
+                }
+                if (beginCounting)
+                {
+                    sumOfElements += Math.Abs(ex1[i]);
+                }
+            }
+            return sumOfElements;
+        }
+        private static uint SelectionMenu(ref uint variable)
+        {
+            if (variable > 0 && variable < 6)
+            {
+                return variable;
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
         static void VariableInitialization(ref uint size)
         {
             while (true)
@@ -93,6 +146,7 @@ namespace External_training
                 {
                     Console.Write("Ваш выбыор: ");
                     size = Convert.ToUInt32(Console.ReadLine());
+                    size = SelectionMenu(ref size);
                     break;
                 }
                 catch
@@ -126,7 +180,7 @@ namespace External_training
                 Console.Write(index + " ");
             }
         }
-        static void ArrayInitialization(ref double[] array, double constVar)
+        static void ArrayInitialization(ref double[] array, ref double constVar)
         {
             Random rand = new Random();
             int randomPosition = rand.Next(0, array.Length);
