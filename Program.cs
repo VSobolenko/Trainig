@@ -48,7 +48,7 @@ namespace External_training
                     sumOfElements += Math.Abs(ex1[i]);
                 }
             }
-            Console.WriteLine("Сумма элементов массива по элемента S=" + s + " равна: " + sumOfElements);
+            Console.WriteLine("Сумма элементов массива до элемента S=" + s + " равна: " + sumOfElements);
 
             //Задание 2 - отсортировать по убыванию до последнего чётного элемента
             ex1 = ex1.TakeWhile(x => x % 2 == 0).OrderByDescending(x => x).ToArray();
