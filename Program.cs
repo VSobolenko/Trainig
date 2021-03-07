@@ -38,8 +38,8 @@ namespace External_training
                 switch (userSelection)
                 {
                     case 1:
-                        Console.WriteLine("Для передачи по значению --ссылке-- возспользуемся методом находящий сумму модулей массива\nВыполняется...");
-                        Console.WriteLine("...Готово!\nСумма элементов массива до элемента S=" + s + " равна: " + SumOfElementArrayRef(ref ex1, ref s));
+                        Console.WriteLine("Для передачи по значению возспользуемся методом находящий сумму модулей массива\nВыполняется...");
+                        Console.WriteLine("...Готово!\nСумма элементов массива до элемента S=" + s + " равна: " + SumOfElementArrayRef(ref ex2, ref s));
                         break;
 
                     case 2:
@@ -50,17 +50,10 @@ namespace External_training
                         break;
 
                     case 3:
-                        Console.WriteLine("Для передачи по ссылке --того, что возвользоваться выходынми параметрами  параметром-массивом-- возспользуемся методом " +
-                                                   "сортирующий массив до последнего чётного элемента\nВыполняется..\n");
+                        Console.WriteLine("Для того, чтобы возвользоваться выходынми параметрами и параметром-массивом возспользуемся методом, " +
+                                                   "находящий номер последней строки с хотя бы 1 нечётным числом\nВыполняется..\n");
                         int? latLineWithOddNumber = null;
-                        for (int i = 0; i < ex2.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < ex2.GetLength(1); j++)
-                            {
-                                if (ex2[i, j] % 2 == 0)
-                                    latLineWithOddNumber = i;
-                            }
-                        }
+                        LastStringWithOddNumber(out latLineWithOddNumber, ex1);
                         Console.WriteLine("Номер последней строки где встречается нечетное число: " + latLineWithOddNumber);
 
                         break;
@@ -79,21 +72,11 @@ namespace External_training
 
             //Задание 2 - отсортировать по убыванию до последнего чётного элемента
 
-            //Задание 3 - номер последней строки с хотя бы 1 не чётным числом
-            int? latLineWithOddNumber = null;
-            for (int i = 0; i < ex2.GetLength(0); i++)
-            {
-                for (int j = 0; j < ex2.GetLength(1); j++)
-                {
-                    if (ex2[i, j] % 2 == 0)
-                        latLineWithOddNumber = i;
-                }
-            }
-            Console.WriteLine("Номер последней строки где встречается нечетное число: " + latLineWithOddNumber);
+            //Задание 3 - номер последней строки с хотя бы 1 нечётным числом
+
             Console.ReadKey();
         }
 
-        
         private static void PrintMenu()
         {
             Console.WriteLine("Меню:");
@@ -104,25 +87,40 @@ namespace External_training
                 "5 - выйти из программы" + "\n" +
                 "Ваш выбор: ");
         }
+        private static void LastStringWithOddNumber(out int? latLineWithOddNumber, params double[] ex2)
+        {
+            latLineWithOddNumber = 0;
+
+            for (int i = 0; i < ex2.GetLength(0); i++)
+            {
+                if (ex2[i] % 2 == 0)
+                {
+                    latLineWithOddNumber = i;
+                }
+            }
+        }
 
         private static void SortArrayWithRef(ref double[] arr)
         {
             arr = arr.TakeWhile(x => x % 2 == 0).OrderByDescending(x => x).ToArray();
         }
-        private static double SumOfElementArrayRef(ref double[] ex1, ref double s)
+        private static double SumOfElementArrayRef(ref double[,] ex1, ref double s)
         {
             bool beginCounting = false;
             double sumOfElements = 0;
             for (int i = 0; i < ex1.Length; i++)
             {
-                if (ex1[i] == s)
+                for(int j =0; j < ex1.Length; j++)
                 {
-                    beginCounting = true;
-                    continue;
-                }
-                if (beginCounting)
-                {
-                    sumOfElements += Math.Abs(ex1[i]);
+                    if (ex1[i,j] == s && beginCounting == false)
+                    {
+                        beginCounting = true;
+                        continue;
+                    }
+                    if (beginCounting)
+                    {
+                        sumOfElements += Math.Abs(ex1[i,j]);
+                    }
                 }
             }
             return sumOfElements;
