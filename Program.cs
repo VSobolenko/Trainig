@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace External_training
 {
@@ -12,7 +9,7 @@ namespace External_training
         {
             uint n = 9, m = 4;
             double s = 0;
-            
+
             Console.WriteLine("Для одномерного массива, где N - его размер, введите N");
             VariableInitialization(ref n);
             Console.WriteLine("Для двумерного массива N x M, где N=" + n + ", введите M");
@@ -39,9 +36,9 @@ namespace External_training
             //Задание 1 - сумма модулей массива после элемента S
             bool beginCounting = false;
             double sumOfElements = 0;
-            for(int i = 0; i < ex1.Length; i++)
+            for (int i = 0; i < ex1.Length; i++)
             {
-                if(ex1[i] == s)
+                if (ex1[i] == s)
                 {
                     beginCounting = true;
                     continue;
@@ -64,7 +61,7 @@ namespace External_training
             {
                 for (int j = 0; j < ex2.GetLength(1); j++)
                 {
-                    if (ex2[i, j] %2 == 0)
+                    if (ex2[i, j] % 2 == 0)
                         latLineWithOddNumber = i;
                 }
             }
@@ -118,7 +115,7 @@ namespace External_training
             int randomPosition = rand.Next(0, array.Length);
             for (int i = 0; i < array.Length; i++)
             {
-                if(randomPosition == i)
+                if (randomPosition == i)
                 {
                     array[i] = constVar;
                     continue;
@@ -144,7 +141,7 @@ namespace External_training
             //int zero = 0;
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                for(int j = 0; j < array.GetLength(1); j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
                     array[i, j] = rand.NextDouble() * 10;
                 }
