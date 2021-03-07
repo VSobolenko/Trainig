@@ -7,6 +7,11 @@ namespace External_training
     {
         static void Main(string[] args)
         {
+            while (true)
+            {
+                PrintMenu();
+
+            }
             uint n = 9, m = 4;
             double s = 0;
 
@@ -68,6 +73,18 @@ namespace External_training
             Console.WriteLine("Номер последней строки где встречается нечетное число: " + latLineWithOddNumber);
             Console.ReadKey();
         }
+
+        private static void PrintMenu()
+        {
+            Console.WriteLine("Меню:");
+            Console.Write("1 - передать данные по значению" + "\n" + 
+                "2 - передать данные по ссылке" + "\n" +
+                "3 - использовать выходные параметры" + "\n" + 
+                "4 - использовать параметры массивы" + "\n" + 
+                "5 - выйти из программы" + "\n" + 
+                "Ваш выбор: ");
+        }
+
         static void VariableInitialization(ref uint size)
         {
             while (true)
