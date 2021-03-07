@@ -38,7 +38,7 @@ namespace External_training
             double sumOfElements = 0;
             for (int i = 0; i < ex1.Length; i++)
             {
-                if (ex1[i] == s)
+                if (ex1[i] == s && beginCounting == false)
                 {
                     beginCounting = true;
                     continue;
