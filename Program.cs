@@ -5,20 +5,27 @@ namespace External_training
 {
     class Program
     {
+        struct Dishes
+        {
+            public string name;
+            public string material;
+            public string type;
+            public int price1, price2, price3;
+        }
         static void Main(string[] args)
         {
             bool newSwitch = true;
 
             uint n = 9, m = 4;
-            double s = 0;
+            int s = 0;
 
             Console.WriteLine("Для одномерного массива, где N - его размер, введите N");
             VariableInitialization(ref n);
             Console.WriteLine("Для двумерного массива N x M, где N=" + n + ", введите M");
             VariableInitialization(ref m);
 
-            double[] ex1 = new double[n];
-            double[,] ex2 = new double[n, m];
+            int[] ex1 = new int[n];
+            int[,] ex2 = new int[n, m];
 
             ArrayInitialization(ref ex1, ref s);
             ArrayInitialization(ref ex2, ref s);
@@ -87,7 +94,7 @@ namespace External_training
                 "5 - выйти из программы" + "\n" +
                 "Ваш выбор: ");
         }
-        private static void LastStringWithOddNumber(out int? latLineWithOddNumber, params double[] ex2)
+        private static void LastStringWithOddNumber(out int? latLineWithOddNumber, params int[] ex2)
         {
             latLineWithOddNumber = 0;
 
@@ -99,11 +106,11 @@ namespace External_training
                 }
             }
         }
-        private static void SortArrayWithRef(ref double[] arr)
+        private static void SortArrayWithRef(ref int[] arr)
         {
             arr = arr.TakeWhile(x => x % 2 == 0).OrderByDescending(x => x).ToArray();
         }
-        private static double SumOfElementArrayRef(ref double[,] ex1, ref double s)
+        private static double SumOfElementArrayRef(ref int[,] ex1, ref int s)
         {
             bool beginCounting = false;
             double sumOfElements = 0;
@@ -153,14 +160,14 @@ namespace External_training
                 }
             }
         }
-        static void VariableInitialization(ref double size)
+        static void VariableInitialization(ref int size)
         {
             while (true)
             {
                 try
                 {
                     Console.Write("Ваш выбыор: ");
-                    size = Convert.ToDouble(Console.ReadLine());
+                    size = Convert.ToInt32(Console.ReadLine());
                     break;
                 }
                 catch
@@ -170,14 +177,14 @@ namespace External_training
                 }
             }
         }
-        static void PrintToConsoleArray(ref double[] array)
+        static void PrintToConsoleArray(ref int[] array)
         {
             foreach (float index in array)
             {
                 Console.Write(index + " ");
             }
         }
-        static void ArrayInitialization(ref double[] array, ref double constVar)
+        static void ArrayInitialization(ref int[] array, ref int constVar)
         {
             Random rand = new Random();
             int randomPosition = rand.Next(0, array.Length);
@@ -188,10 +195,10 @@ namespace External_training
                     array[i] = constVar;
                     continue;
                 }
-                array[i] = rand.NextDouble() * 5;
+                array[i] = rand.Next(0,100);
             }
         }
-        static void PrintToConsoleArray(ref double[,] array)
+        static void PrintToConsoleArray(ref int[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -202,7 +209,7 @@ namespace External_training
                 Console.WriteLine();
             }
         }
-        static void ArrayInitialization(ref double[,] array, ref double constS)
+        static void ArrayInitialization(ref int[,] array, ref int constS)
         {
             Random rand = new Random();
             int randomPositionX = rand.Next(0, array.GetLength(0));
@@ -211,7 +218,7 @@ namespace External_training
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i, j] = rand.NextDouble() * 10;
+                    array[i, j] = rand.Next(0, 100);
                     if (i == randomPositionX && j == randomPositionY)
                     {
                         array[i, j] = constS;
