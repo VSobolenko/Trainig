@@ -78,7 +78,7 @@ namespace External_training
                             "Материал: : " + dishes.Item2 + "\n" +
                             "Код товара: " + dishes.Item3 + "\n" +
                             "Средняя цена: " + dishes.Item4 + "\n" +
-                            "Совпадение материала : " + dishes.Item5); 
+                            "Совпадение материала : " + dishes.Item5);
                         break;
                     case 5:
                         newSwitch = false;
@@ -98,7 +98,7 @@ namespace External_training
             Dishes[] dishes = new Dishes[5];
             StructInitialization(ref dishes);
             string codeDishes = material + "_" + dateTime.Day.ToString();
-            string YesOrNo = "No";
+            string YesOrNo = "Нет";
             int totalPrice;
             double averagePrice = 0;
             int nom = -1;
@@ -115,11 +115,9 @@ namespace External_training
 
                 if (dishes[nom].material == material)
                 {
-                    YesOrNo = "Yes";
+                    YesOrNo = "Да";
                 }
             }
-
-
 
             return Tuple.Create<string, string, string, double, string>(name, material, codeDishes, averagePrice, YesOrNo);
         }
@@ -144,7 +142,7 @@ namespace External_training
             dishes[4].type = "Хранение";
             Random rand = new Random();
             int randomPrice;
-            for(int i =0; i < dishes.Length; i++)
+            for (int i = 0; i < dishes.Length; i++)
             {
                 randomPrice = rand.Next(50, 90);
                 dishes[i].price1 = randomPrice;
@@ -226,23 +224,6 @@ namespace External_training
                 }
             }
         }
-        static void VariableInitialization(ref int size)
-        {
-            while (true)
-            {
-                try
-                {
-                    Console.Write("Ваш выбыор: ");
-                    size = Convert.ToInt32(Console.ReadLine());
-                    break;
-                }
-                catch
-                {
-                    Console.Clear();
-                    Console.WriteLine("Введены не корректные данные, нужна ещё 1 попытка");
-                }
-            }
-        }
         static void PrintToConsoleArray(ref int[] array)
         {
             foreach (float index in array)
@@ -261,7 +242,7 @@ namespace External_training
                     array[i] = constVar;
                     continue;
                 }
-                array[i] = rand.Next(0,99);
+                array[i] = rand.Next(0, 99);
             }
         }
         static void PrintToConsoleArray(ref int[,] array)
