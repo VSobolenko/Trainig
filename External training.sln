@@ -4,7 +4,7 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "External training", "External training\External training.csproj", "{43CD2A1E-C735-4BBD-B728-47FB047CE4E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{86564068-43AE-4012-B64E-5F2F80BB56A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestVector3", "UnitTestProject1\UnitTestVector3.csproj", "{86564068-43AE-4012-B64E-5F2F80BB56A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
