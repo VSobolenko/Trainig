@@ -6,6 +6,7 @@ namespace External_training
     {
         static void Main(string[] args)
         {
+
             Console.ReadKey();
         }
     }
