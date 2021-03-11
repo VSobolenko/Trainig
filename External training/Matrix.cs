@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace External_training
 {
@@ -45,6 +41,40 @@ namespace External_training
         {
             get { return _matrix[i, j]; }
             set { _matrix[i, j] = value; }
+        }
+        public void Initialization()
+        {
+            for (var i = 0; i < _matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < _matrix.GetLength(1); j++)
+                {
+                    Console.WriteLine("Введите: a[{0}][{1}]", i, j);
+                    _matrix[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+        }
+        public void InitializationAuto()
+        {
+            Random rand = new Random();
+            for (var i = 0; i < _matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < _matrix.GetLength(1); j++)
+                {
+                    _matrix[i, j] = rand.Next(0, 100);
+                }
+            }
+        }
+        public void PrintArray()
+        {
+            Console.WriteLine("Вывод матрицы: ");
+            for (var i = 0; i < _matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < _matrix.GetLength(1); j++)
+                {
+                    Console.Write(_matrix[i, j] + "");
+                }
+                Console.WriteLine();
+            }
         }
         public static Matrix Sum(Matrix a, Matrix b)
         {
@@ -97,7 +127,7 @@ namespace External_training
         }
         public static Matrix operator *(Matrix a, Matrix b)
         {
-            if(a.i != b.j)
+            if (a.i != b.j)
             {
                 throw new Exception("Умножение не возможно! Количество столбцов первой матрицы не равно количеству строк второй матрицы.");
             }
@@ -109,7 +139,7 @@ namespace External_training
                 {
                     rezult[i, j] = 0;
 
-                    for (var k = 0; k <a.i; k++)
+                    for (var k = 0; k < a.i; k++)
                     {
                         rezult[i, j] += a[i, k] * b[k, j];
                     }
