@@ -23,6 +23,10 @@ namespace External_training
         }
         public Matrix(int i, int j)
         {
+            if(i <= 0 || j <= 0)
+            {
+                throw new Exception("Длина строк или столбцов не может быть меньше нуля");
+            }
             _matrix = new int[i, j];
         }
 
@@ -42,6 +46,7 @@ namespace External_training
             get { return _matrix[i, j]; }
             set { _matrix[i, j] = value; }
         }
+        
         public void Initialization()
         {
             for (var i = 0; i < _matrix.GetLength(0); i++)
@@ -60,18 +65,18 @@ namespace External_training
             {
                 for (var j = 0; j < _matrix.GetLength(1); j++)
                 {
-                    _matrix[i, j] = rand.Next(0, 100);
+                    _matrix[i, j] = rand.Next(0, 10);
                 }
             }
         }
-        public void PrintArray()
+        public void PrintMatrix()
         {
             Console.WriteLine("Вывод матрицы: ");
             for (var i = 0; i < _matrix.GetLength(0); i++)
             {
                 for (var j = 0; j < _matrix.GetLength(1); j++)
                 {
-                    Console.Write(_matrix[i, j] + "");
+                    Console.Write("{0,3} ", _matrix[i, j]);
                 }
                 Console.WriteLine();
             }
@@ -119,7 +124,7 @@ namespace External_training
             {
                 for (var j = 0; j < b.i; j++)
                 {
-                    rezult[i, j] = a[i, j] + b[i, j];
+                    rezult[i, j] = a[i, j] - b[i, j];
                 }
             }
 
