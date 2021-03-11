@@ -4,7 +4,9 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "External training", "External training\External training.csproj", "{43CD2A1E-C735-4BBD-B728-47FB047CE4E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestVector3", "UnitTestProject1\UnitTestVector3.csproj", "{86564068-43AE-4012-B64E-5F2F80BB56A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestVector3", "UnitTestVector3\UnitTestVector3.csproj", "{86564068-43AE-4012-B64E-5F2F80BB56A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestPolynomial", "UnitTestPolynomial\UnitTestPolynomial.csproj", "{CEAB36B7-3238-4515-9D39-4E61324DD56E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{86564068-43AE-4012-B64E-5F2F80BB56A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86564068-43AE-4012-B64E-5F2F80BB56A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86564068-43AE-4012-B64E-5F2F80BB56A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEAB36B7-3238-4515-9D39-4E61324DD56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEAB36B7-3238-4515-9D39-4E61324DD56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEAB36B7-3238-4515-9D39-4E61324DD56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEAB36B7-3238-4515-9D39-4E61324DD56E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

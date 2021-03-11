@@ -46,6 +46,25 @@ namespace External_training
             return distance;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Vector3 vector &&
+                   x == vector.x &&
+                   y == vector.y &&
+                   z == vector.z &&
+                   LenthVector == vector.LenthVector;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 52961991;
+            hashCode = hashCode * -1521134295 + x.GetHashCode();
+            hashCode = hashCode * -1521134295 + y.GetHashCode();
+            hashCode = hashCode * -1521134295 + z.GetHashCode();
+            hashCode = hashCode * -1521134295 + LenthVector.GetHashCode();
+            return hashCode;
+        }
+
         public static Vector3 operator +(Vector3 a, Vector3 b)
         {
             return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
