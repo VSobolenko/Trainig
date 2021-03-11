@@ -1,7 +1,6 @@
 ﻿using External_training;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using FluentAssertions;
 
 namespace UnitTestVector3
 {
