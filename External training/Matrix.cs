@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace External_training
 {
-    class Matrix
+    public class Matrix
     {
         /*
          (1,1)
@@ -46,40 +50,27 @@ namespace External_training
             get { return _matrix[i, j]; }
             set { _matrix[i, j] = value; }
         }
-        
-        public void Initialization()
+        public override bool Equals(object obj)
         {
-            for (var i = 0; i < _matrix.GetLength(0); i++)
-            {
-                for (var j = 0; j < _matrix.GetLength(1); j++)
-                {
-                    Console.WriteLine("Введите: a[{0}][{1}]", i, j);
-                    _matrix[i, j] = Convert.ToInt32(Console.ReadLine());
-                }
-            }
+
+            return obj is Matrix matrix &&
+                   IsEquals(_matrix, matrix._matrix);
         }
-        public void InitializationAuto()
+        private bool IsEquals(int[,] arr1, int[,] arr2)
         {
-            Random rand = new Random();
-            for (var i = 0; i < _matrix.GetLength(0); i++)
+            bool isEqual = true;
+            for (int i = 0; i < arr1.GetLength(0); i++)
             {
-                for (var j = 0; j < _matrix.GetLength(1); j++)
+                for (int j = 0; j < arr1.GetLength(1); j++)
                 {
-                    _matrix[i, j] = rand.Next(0, 10);
+                    if (arr1[i, j] != arr2[i, j])
+                    {
+                        isEqual = false;
+                        break;
+                    }
                 }
             }
-        }
-        public void PrintMatrix()
-        {
-            Console.WriteLine("Вывод матрицы: ");
-            for (var i = 0; i < _matrix.GetLength(0); i++)
-            {
-                for (var j = 0; j < _matrix.GetLength(1); j++)
-                {
-                    Console.Write("{0,3} ", _matrix[i, j]);
-                }
-                Console.WriteLine();
-            }
+            return isEqual;
         }
         public static Matrix Sum(Matrix a, Matrix b)
         {
@@ -93,7 +84,6 @@ namespace External_training
         {
             return a * b;
         }
-
         public static Matrix operator +(Matrix a, Matrix b)
         {
             Matrix rezult = new Matrix(a.j, b.i);
@@ -151,6 +141,40 @@ namespace External_training
                 }
             }
             return rezult;
+        }
+        public void Initialization()
+        {
+            for (var i = 0; i < _matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < _matrix.GetLength(1); j++)
+                {
+                    Console.WriteLine("Введите: a[{0}][{1}]", i, j);
+                    _matrix[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+        }
+        public void InitializationAuto()
+        {
+            Random rand = new Random();
+            for (var i = 0; i < _matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < _matrix.GetLength(1); j++)
+                {
+                    _matrix[i, j] = rand.Next(0, 10);
+                }
+            }
+        }
+        public void PrintMatrix()
+        {
+            Console.WriteLine("Вывод матрицы: ");
+            for (var i = 0; i < _matrix.GetLength(0); i++)
+            {
+                for (var j = 0; j < _matrix.GetLength(1); j++)
+                {
+                    Console.Write("{0,3} ", _matrix[i, j]);
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
