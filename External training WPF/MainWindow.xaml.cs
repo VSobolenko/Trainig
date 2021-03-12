@@ -1,19 +1,8 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace External_training_WPF
 {
@@ -25,30 +14,51 @@ namespace External_training_WPF
         public MainWindow()
         {
             InitializeComponent();
-            OpenFile();
+
         }
 
-        public void OpenFile(string path = @"E:\Work\EPAM Training\test file\new text for read.txt")
-        {
-            List<string> lines = new List<string>();
-            using (StreamReader r = new StreamReader(path))
-            {
-                string line;
-                while ((line = r.ReadLine()) != null)
-                {
-                    lines.Add(line);
-                }
-            }
-            outputListBox.ItemsSource = lines;
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Open_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog newTextFile = new OpenFileDialog();
+
             newTextFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             newTextFile.InitialDirectory = @"E:\Work\EPAM Training\test file\new text for read.txt";
+
             if (newTextFile.ShowDialog() == true)
-                OpenFile(newTextFile.FileName);
+            {
+                TextRange doc = new TextRange(outputRichTextBox.Document.ContentStart, outputRichTextBox.Document.ContentEnd);
+                using (FileStream fs = new FileStream(newTextFile.FileName, FileMode.Open))
+                {
+                    if (Path.GetExtension(newTextFile.FileName).ToLower() == ".rtf")
+                        doc.Load(fs, DataFormats.Rtf);
+                    else if (Path.GetExtension(newTextFile.FileName).ToLower() == ".txt")
+                        doc.Load(fs, DataFormats.Text);
+                    else
+                        doc.Load(fs, DataFormats.Xaml);
+                }
+                doc.ApplyPropertyValue(Paragraph.MarginProperty, new Thickness(0));
+                doc.ApplyPropertyValue(Paragraph.FontSizeProperty, 20D);
+            }
+
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Text Files (*.txt)|*.txt|RichText Files (*.rtf)|*.rtf|XAML Files (*.xaml)|*.xaml|All files (*.*)|*.*";
+            if (sfd.ShowDialog() == true)
+            {
+                TextRange doc = new TextRange(outputRichTextBox.Document.ContentStart, outputRichTextBox.Document.ContentEnd);
+                using (FileStream fs = File.Create(sfd.FileName))
+                {
+                    if (Path.GetExtension(sfd.FileName).ToLower() == ".rtf")
+                        doc.Save(fs, DataFormats.Rtf);
+                    else if (Path.GetExtension(sfd.FileName).ToLower() == ".txt")
+                        doc.Save(fs, DataFormats.Text);
+                    else
+                        doc.Save(fs, DataFormats.Xaml);
+                }
+            }
         }
     }
 }

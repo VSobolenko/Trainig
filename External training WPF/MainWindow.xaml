@@ -9,11 +9,17 @@
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Открыть" Click="MenuItem_Click" ></MenuItem>
-                <MenuItem Header="Сохранить" ></MenuItem>
+                <MenuItem Header="Открыть" Click="Open_Click" ></MenuItem>
+                <MenuItem Header="Сохранить" Click="Save_Click" ></MenuItem>
                 <MenuItem Header="Закрыть" ></MenuItem>
             </MenuItem>
         </Menu>
-        <ListBox x:Name="outputListBox" HorizontalAlignment="Left" Height="384" Margin="10,25,0,0" VerticalAlignment="Top" Width="760"/>
+        <RichTextBox x:Name="outputRichTextBox" HorizontalAlignment="Left" Height="379" Margin="10,30,0,0" VerticalAlignment="Top" Width="772">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
     </Grid>
 </Window>
