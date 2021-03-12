@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:External_training_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Working with file" Height="450" Width="800">
     <Grid>
-        
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть" Click="MenuItem_Click" ></MenuItem>
+                <MenuItem Header="Сохранить" ></MenuItem>
+                <MenuItem Header="Закрыть" ></MenuItem>
+            </MenuItem>
+        </Menu>
+        <ListBox x:Name="outputListBox" HorizontalAlignment="Left" Height="384" Margin="10,25,0,0" VerticalAlignment="Top" Width="760"/>
     </Grid>
 </Window>
