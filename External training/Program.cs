@@ -8,6 +8,7 @@ namespace External_training
     {
         static void Main(string[] args)
         {
+            //новый тест
             //Ввод текст
             Console.Write("Введите ваше предложение: ");
             string inputText = Console.ReadLine();
