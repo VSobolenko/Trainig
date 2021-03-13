@@ -10,9 +10,8 @@ namespace External_training
         static void Main(string[] args)
         {
             //Ввод текст
-            //Console.Write("Введите ваше предложение: ");
-            //string inputText = Console.ReadLine();
-            string inputText = "У меня 10 долларов и 3 яблока.";
+            Console.Write("Введите ваше предложение: ");
+            string inputText = Console.ReadLine();
 
             //Разбиение введённого текста на отдельные слова для преобразования
             string[] splitText = inputText.Split(' ');
@@ -39,7 +38,6 @@ namespace External_training
             MatchCollection match = regex.Matches(text);
             foreach (Match mtch in match)
             {
-                Console.WriteLine(mtch.Value);
                 newWord += mtch.Value;
             }
 
@@ -48,7 +46,6 @@ namespace External_training
             match = regex2.Matches(text);
             foreach (Match mtch in match)
             {
-                Console.WriteLine(mtch.Value);
                 newWord += mtch.Value;
             }
             return newWord;
