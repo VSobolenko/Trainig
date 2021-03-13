@@ -33,6 +33,8 @@ namespace External_training
         static string MoveLettersInAWord(string text)
         {
             string newWord = "";
+
+            //В передаваемом тексте записываем в начало гласные буквы, соглсано регулярному выражению
             Regex regex = new Regex("[уеёыаоэюияЁУЕЭОАЫЯИЮ]");
             MatchCollection match = regex.Matches(text);
             foreach (Match mtch in match)
@@ -40,6 +42,8 @@ namespace External_training
                 Console.WriteLine(mtch.Value);
                 newWord += mtch.Value;
             }
+
+            //Аналогичное действие, только регулярное выражения отбрасывает все гласные буквы
             Regex regex2 = new Regex("[^уеёыаоэюияЁУЕЭОАЫЯИЮ]");
             match = regex2.Matches(text);
             foreach (Match mtch in match)
