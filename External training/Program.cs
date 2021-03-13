@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace External_training
 {
@@ -8,10 +9,10 @@ namespace External_training
     {
         static void Main(string[] args)
         {
-            //новый тест
             //Ввод текст
-            Console.Write("Введите ваше предложение: ");
-            string inputText = Console.ReadLine();
+            //Console.Write("Введите ваше предложение: ");
+            //string inputText = Console.ReadLine();
+            string inputText = "У меня 10 долларов и 3 яблока.";
 
             //Разбиение введённого текста на отдельные слова для преобразования
             string[] splitText = inputText.Split(' ');
@@ -29,50 +30,23 @@ namespace External_training
             Console.ReadKey();
         }
 
-        //Метод, который в словах гласные буквы выносит в начало слова, сохранив порядок
         static string MoveLettersInAWord(string text)
         {
-            //Тут храним наши букву, которые мы считаем что они являются гласными
-            var constVowels = new List<char>() { 'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е' };
-
-            //Массив хранящий наше 1 слово в виде символов
-            char[] letters = text.ToCharArray();
-
-            //2 массива, которые отдельно хранят гласные и согласные буквы, сохраняя их порядок как и в слове
-            char[] vowels = new char[text.Length];
-            char[] consonants = new char[text.Length];
-
-            //Собственный индекс для массива символов
-            int jvow = 0;
-            int jcons = 0;
-
             string newWord = "";
-
-            //Разделяем слово на 2 массива гласных и согласных букв
-            for (int i =0; i< letters.Length; i++)
+            Regex regex = new Regex("[уеёыаоэюияЁУЕЭОАЫЯИЮ]");
+            MatchCollection match = regex.Matches(text);
+            foreach (Match mtch in match)
             {
-                if(constVowels.Contains(letters[i]))
-                {
-                    vowels[jvow] = letters[i];
-                    jvow++;
-                }
-                else
-                {
-                    consonants[jcons] = letters[i];
-                    jcons++;
-                }
+                Console.WriteLine(mtch.Value);
+                newWord += mtch.Value;
             }
-
-            //Соединяем 2 массива в новое слово, сначала гласные, потом согласные. Порядок сохранятся
-            foreach (var index in vowels.Where(x=>x != '\0'))
+            Regex regex2 = new Regex("[^уеёыаоэюияЁУЕЭОАЫЯИЮ]");
+            match = regex2.Matches(text);
+            foreach (Match mtch in match)
             {
-                newWord += index.ToString();
+                Console.WriteLine(mtch.Value);
+                newWord += mtch.Value;
             }
-            foreach (var index in consonants.Where(x=> x != '\0'))
-            {
-                newWord += index.ToString();
-            }
-
             return newWord;
         }
     }
