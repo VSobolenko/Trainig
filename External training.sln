@@ -2,18 +2,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorsWEB", "MonitorsWEB\MonitorsWEB.csproj", "{00912644-5D67-4F6F-810D-9C27C77E135D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonitorsWEB", "MonitorsWEB\MonitorsWEB.csproj", "{00912644-5D67-4F6F-810D-9C27C77E135D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{00912644-5D67-4F6F-810D-9C27C77E135D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00912644-5D67-4F6F-810D-9C27C77E135D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00912644-5D67-4F6F-810D-9C27C77E135D}.Debug|x64.ActiveCfg = Debug|x64
+		{00912644-5D67-4F6F-810D-9C27C77E135D}.Debug|x64.Build.0 = Debug|x64
 		{00912644-5D67-4F6F-810D-9C27C77E135D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00912644-5D67-4F6F-810D-9C27C77E135D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00912644-5D67-4F6F-810D-9C27C77E135D}.Release|x64.ActiveCfg = Release|x64
+		{00912644-5D67-4F6F-810D-9C27C77E135D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
